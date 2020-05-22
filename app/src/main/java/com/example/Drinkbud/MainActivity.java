@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.Calendar;
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -23,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), WaterTrackerActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        Button waterAlarm = (Button) findViewById(R.id.waterAlarmBtn);
+        waterAlarm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), WaterAlarmActivity.class);
+                startIntent.putExtra("something", "Set Water Alarm To:");
                 startActivity(startIntent);
             }
         });
