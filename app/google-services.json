@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1021036560086",
+    "firebase_url": "https://drinkbud-f5f62.firebaseio.com",
+    "project_id": "drinkbud-f5f62",
+    "storage_bucket": "drinkbud-f5f62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021036560086:android:157650143a73b3f5dd5377",
+        "android_client_info": {
+          "package_name": "com.example.Drinkbud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021036560086-dktc9kd9rms096g7ldd4ico2v1p9bv6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Drinkbud",
+            "certificate_hash": "d46c7dc2f1263b9e872a7fe0ba0c95dbb3d88edc"
+          }
+        },
+        {
+          "client_id": "1021036560086-vfr59qjiei7cbdbb0o7tamqamgtv70aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVEKCotA_jS-DUiu5At4MWKTrdZ9m814U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021036560086-vfr59qjiei7cbdbb0o7tamqamgtv70aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
