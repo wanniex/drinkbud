@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class WaterTrackerActivity extends AppCompatActivity {
     Button waterPlantBtn;
@@ -38,14 +40,24 @@ public class WaterTrackerActivity extends AppCompatActivity {
         waterAmountResult = (TextView) findViewById(R.id.waterAmountResult);
         waterAmountNum = (EditText) findViewById(R.id.waterAmountNum);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        final String formattedDate = DateFormat.getDateInstance().format(currentTime);
+
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("waterTracker");
+        reference = rootNode.getReference("userDatabase");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int lastDrank = Integer.parseInt(dataSnapshot.child("waterDrank").getValue().toString());
-                waterAmountResult.setText("You've drank " + lastDrank + " ml today");
-                lastDrankRef = lastDrank;
+                if (dataSnapshot.child("testUser").child("waterTracker").hasChild(formattedDate)) {
+                    int lastDrank = Integer.parseInt(dataSnapshot.child("testUser").child("waterTracker").child(formattedDate).getValue().toString());
+                    waterAmountResult.setText("You've drank " + lastDrank + " ml today");
+                    lastDrankRef = lastDrank;
+                } else {
+                    reference.child("testUser").child("waterTracker").child(formattedDate).setValue(Integer.toString(0));
+                    waterAmountResult.setText("You've drank " + 0 + " ml today");
+                    lastDrankRef = 0;
+                }
+
             }
 
             @Override
@@ -64,7 +76,7 @@ public class WaterTrackerActivity extends AppCompatActivity {
 
                 int num2 = Integer.parseInt(waterAmountNum.getText().toString());
                 int currentDrank = lastDrankRef + num2;
-                reference.child("waterDrank").setValue(Integer.toString(currentDrank));
+                reference.child("testUser").child("waterTracker").child(formattedDate).setValue(Integer.toString(currentDrank));
                 waterAmountResult.setText("You've drank " + currentDrank + " ml today");
             }
         });
