@@ -27,6 +27,8 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentText("It's time to drink water!")
                 .setAutoCancel(true);
 
-        notificationManager.notify(100, builder.build());
+        if (intent.getAction().equals("action set")) {
+            notificationManager.notify(100, builder.build());
+        }
     }
 }

@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,15 +48,16 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 if (activate.isChecked()) {
                     // added this
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(Calendar.HOUR_OF_DAY, 4);
+                    /*calendar.set(Calendar.HOUR_OF_DAY, 4);
                     calendar.set(Calendar.MINUTE, 19);
-                    calendar.set(Calendar.SECOND, 30);
+                    calendar.set(Calendar.SECOND, 30); */
                     Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+                    intent.setAction("action set");
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                     // need to change interval according to selection (in 3rd argument)
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, pendingIntent);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
 
                     int radioID = radioGroup.getCheckedRadioButtonId();
                     radioButton = findViewById(radioID);
