@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.util.Calendar;
 
 public class WaterAlarmActivity extends AppCompatActivity {
     RadioGroup radioGroup;
@@ -51,17 +50,27 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 if (activate.isChecked()) {
-                    // delete this
-                    /*calendar.set(Calendar.HOUR_OF_DAY, 4);
-                    calendar.set(Calendar.MINUTE, 19);
-                    calendar.set(Calendar.SECOND, 30);
-                    Calendar calendar = Calendar.getInstance(); */
-
-
-                    // need to change interval according to selection (in 3rd argument)
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
+                    // ADDED THIS
 
                     int radioID = radioGroup.getCheckedRadioButtonId();
+
+                    if (radioID == 2131165214) {
+                        // 30 minutes
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 5*1000, pendingIntent);
+                    } else if (radioID == 2131165215) {
+                        // 45 minutes
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 45*60*1000, pendingIntent);
+                    } else if (radioID == 213116216) {
+                        // 1 hour
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 60*60*1000, pendingIntent);
+                    } else {
+                        // 2 hours, radioID == 2131165213
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 120*60*1000, pendingIntent);
+                    }
+
+                    // need to change interval according to selection (in 3rd argument)
+                    // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
+
                     radioButton = findViewById(radioID);
                     selection.setText("Selected frequency: " + radioButton.getText());
 
@@ -74,8 +83,6 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
 
