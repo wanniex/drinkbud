@@ -7,10 +7,12 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
@@ -23,6 +25,7 @@ public class WaterAlarmActivity extends AppCompatActivity {
     RadioButton radioButton;
     TextView selection;
     Switch activate;
+    boolean value = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +62,34 @@ public class WaterAlarmActivity extends AppCompatActivity {
 
 
                     // need to change interval according to selection (in 3rd argument)
-                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*5*1000, pendingIntent);
 
                     int radioID = radioGroup.getCheckedRadioButtonId();
                     radioButton = findViewById(radioID);
                     selection.setText("Selected frequency: " + radioButton.getText());
+                    value = true;
 
                 } else {
                     selection.setText("Alarm Deactivated");
 
+                    value = false;                    
                     // TO CANCEL ALARM WHEN SWITCH IS DEACTIVATED
                     alarmManager.cancel(pendingIntent);
+                }
+            }
+        });
 
+        final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
+        value = sharedPreferences.getBoolean("isChecked", value);
+        activate.setChecked(value);
+
+        activate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    sharedPreferences.edit().putBoolean("isChecked", true).apply();
+                }else {
+                    sharedPreferences.edit().putBoolean("isChecked", false).apply();;
                 }
             }
         });
