@@ -54,12 +54,6 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 if (activate.isChecked()) {
-                    // delete this
-                    /*calendar.set(Calendar.HOUR_OF_DAY, 4);
-                    calendar.set(Calendar.MINUTE, 19);
-                    calendar.set(Calendar.SECOND, 30);
-                    Calendar calendar = Calendar.getInstance(); */
-
 
                     // need to change interval according to selection (in 3rd argument)
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*5*1000, pendingIntent);
@@ -71,7 +65,6 @@ public class WaterAlarmActivity extends AppCompatActivity {
 
                 } else {
                     selection.setText("Alarm Deactivated");
-
                     value = false;                    
                     // TO CANCEL ALARM WHEN SWITCH IS DEACTIVATED
                     alarmManager.cancel(pendingIntent);
