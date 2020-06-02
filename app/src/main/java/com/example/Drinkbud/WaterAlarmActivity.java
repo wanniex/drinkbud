@@ -45,16 +45,18 @@ public class WaterAlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+                intent.setAction("action set");
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
                 if (activate.isChecked()) {
-                    // added this
-                    Calendar calendar = Calendar.getInstance();
+                    // delete this
                     /*calendar.set(Calendar.HOUR_OF_DAY, 4);
                     calendar.set(Calendar.MINUTE, 19);
-                    calendar.set(Calendar.SECOND, 30); */
-                    Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-                    intent.setAction("action set");
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                    calendar.set(Calendar.SECOND, 30);
+                    Calendar calendar = Calendar.getInstance(); */
+
 
                     // need to change interval according to selection (in 3rd argument)
                     alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
@@ -63,10 +65,12 @@ public class WaterAlarmActivity extends AppCompatActivity {
                     radioButton = findViewById(radioID);
                     selection.setText("Selected frequency: " + radioButton.getText());
 
-
-
                 } else {
                     selection.setText("Alarm Deactivated");
+
+                    // TO CANCEL ALARM WHEN SWITCH IS DEACTIVATED
+                    alarmManager.cancel(pendingIntent);
+
                 }
             }
         });
