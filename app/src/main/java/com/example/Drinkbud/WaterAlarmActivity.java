@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -40,6 +41,12 @@ public class WaterAlarmActivity extends AppCompatActivity {
         selection = findViewById(R.id.selection);
 
         activate = findViewById(R.id.activate);
+
+        // ADDED: initializing sharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
+        activate.setChecked(sharedPreferences.getBoolean("value", true));
+
+
         activate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +57,12 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 if (activate.isChecked()) {
+                    // ADDED: when switch is checked
+                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
+                    editor.putBoolean("value", true);
+                    editor.apply();
+                    activate.setChecked(true);
+
                     // ADDED THIS
 
                     int radioID = radioGroup.getCheckedRadioButtonId();
@@ -75,8 +88,14 @@ public class WaterAlarmActivity extends AppCompatActivity {
                     selection.setText("Selected frequency: " + radioButton.getText());
 
                 } else {
-                    selection.setText("Alarm Deactivated");
 
+                    // ADDED: when switch is unchecked
+                    SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
+                    editor.putBoolean("value", false);
+                    editor.apply();
+                    activate.setChecked(false);
+
+                    selection.setText("Alarm Deactivated");
                     // TO CANCEL ALARM WHEN SWITCH IS DEACTIVATED
                     alarmManager.cancel(pendingIntent);
 
