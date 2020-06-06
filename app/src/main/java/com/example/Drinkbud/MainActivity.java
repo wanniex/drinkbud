@@ -38,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button waterLocatorBtn = (Button) findViewById(R.id.waterLocatorBtn);
+        waterLocatorBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), WaterLocatorOptionsActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
     }
 
 }

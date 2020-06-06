@@ -20,7 +20,21 @@
         app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601" />
+        app:layout_constraintVertical_bias="0.809" />
+
+    <Button
+        android:id="@+id/waterLocatorBtn"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/mybutton_background"
+        android:text="Find the nearest water places"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.612" />
 
     <Button
         android:id="@+id/waterAlarmBtn"
@@ -33,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.717" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <TextView
         android:id="@+id/textView"
@@ -72,9 +86,9 @@
         android:src="@drawable/drinkbud"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.688" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
