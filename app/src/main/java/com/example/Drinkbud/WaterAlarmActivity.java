@@ -24,6 +24,10 @@ public class WaterAlarmActivity extends AppCompatActivity {
     TextView selection;
     Switch activate;
 
+
+    // ADDED THIS
+    int radioID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +41,13 @@ public class WaterAlarmActivity extends AppCompatActivity {
             tv.setText(text);
         }
 
-        radioGroup = findViewById(R.id.radioGroup);
-        selection = findViewById(R.id.selection);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        selection = (TextView) findViewById(R.id.selection);
+        // ADDED: initializing sharedPreferencesString
+        SharedPreferences sharedPreferencesString = getSharedPreferences("string", MODE_PRIVATE);
+        selection.setText(sharedPreferencesString.getString("words", "Alarm Deactivated"));
 
-        activate = findViewById(R.id.activate);
+        activate = (Switch) findViewById(R.id.activate);
 
         // ADDED: initializing sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
@@ -56,6 +63,9 @@ public class WaterAlarmActivity extends AppCompatActivity {
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
+                radioID = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton) findViewById(radioID);
+
                 if (activate.isChecked()) {
                     // ADDED: when switch is checked
                     SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
@@ -65,11 +75,10 @@ public class WaterAlarmActivity extends AppCompatActivity {
 
                     // ADDED THIS
 
-                    int radioID = radioGroup.getCheckedRadioButtonId();
-
                     if (radioID == 2131165214) {
                         // 30 minutes
                         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 5*1000, pendingIntent);
+
                     } else if (radioID == 2131165215) {
                         // 45 minutes
                         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 45*60*1000, pendingIntent);
@@ -84,8 +93,12 @@ public class WaterAlarmActivity extends AppCompatActivity {
                     // need to change interval according to selection (in 3rd argument)
                     // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
 
-                    radioButton = findViewById(radioID);
+
+                    // ADDED: to save string
                     selection.setText("Selected frequency: " + radioButton.getText());
+                    SharedPreferences.Editor stringEdit = getSharedPreferences("string", MODE_PRIVATE).edit();
+                    stringEdit.putString("words", "Selected frequency: " + radioButton.getText());
+                    stringEdit.apply();
 
                 } else {
 
@@ -96,6 +109,11 @@ public class WaterAlarmActivity extends AppCompatActivity {
                     activate.setChecked(false);
 
                     selection.setText("Alarm Deactivated");
+                    // ADDED: to save string
+                    SharedPreferences.Editor stringEdit = getSharedPreferences("string", MODE_PRIVATE).edit();
+                    stringEdit.putString("words", "Alarm Deactivated");
+                    stringEdit.apply();
+
                     // TO CANCEL ALARM WHEN SWITCH IS DEACTIVATED
                     alarmManager.cancel(pendingIntent);
 
