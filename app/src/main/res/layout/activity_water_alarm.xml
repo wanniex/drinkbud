@@ -33,7 +33,6 @@
             android:id="@+id/alarmfor30"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="Every 30 Minutes" />
 
         <RadioButton
