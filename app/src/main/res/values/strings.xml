@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">drinkbud</string>
+    <string name="title_activity_drinks_stall_options">Map</string>
 </resources>
