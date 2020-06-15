@@ -62,10 +62,10 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
             @Override
             public void onLocationChanged(Location location) {
                 // store user latlong
-                userLatLong = new LatLng(location.getLatitude(), location.getLongitude());
+                userLatLong = new LatLng(1.294876, 103.773803);
                 mMap.clear(); // clear old location marker in google map
                 mMap.addMarker(new MarkerOptions().position(userLatLong).title("Your Location"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(userLatLong));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLatLong, 18), 400, null);
             }
 
             @Override
