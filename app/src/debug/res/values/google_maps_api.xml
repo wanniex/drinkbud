@@ -12,7 +12,7 @@
     com.example.Drinkbud
 
     SHA-1 certificate fingerprint:
-    D4:6C:7D:C2:F1:26:3B:9E:87:2A:7F:E0:BA:0C:95:DB:B3:D8:8E:DC
+    35:1F:77:DE:00:B8:8C:08:07:B3:31:D3:19:78:EB:24:2F:3A:72:59
 
     Alternatively, follow the directions here:
     https://developers.google.com/maps/documentation/android/start#get-key
@@ -20,5 +20,5 @@
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDkjuZJDkCaLi_14ofiIZgy9LjYAoIJBks</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDj4Mp5doAuMNV2O-5XxE5X_SX1yRb2WLY</string>
 </resources>
