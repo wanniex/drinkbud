@@ -28,6 +28,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 // import com.karumi.dexter.Dexter;
 // import com.karumi.dexter.PermissionToken;
 // import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -41,6 +49,11 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
     Location currentLocation;
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;
+
+    // ADDED THIS FOR TEXT ON BUTTONS: 170620
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+    ArrayList<Double> distances = new ArrayList<>();
 
     LocationManager locationManager;
     LocationListener locationListener;
@@ -66,6 +79,54 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), DrinksStallList.class);
+                // ADDED TO SHOW TEXT ON BUTTONS: 170620
+                rootNode = FirebaseDatabase.getInstance();
+                reference = rootNode.getReference("drinkStalls");
+
+                final double currentLat = currentLocation.getLatitude();
+                final double currentLong = currentLocation.getLongitude();
+
+                // HARDCODED TEST CASES: 170620
+                distances.add(0.0);
+                distances.add(1.0);
+
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                            if (distances.size() < 2) {
+                                double locationLat = Double.parseDouble(postSnapshot.child("lat").getValue().toString());
+                                double locationLong = Double.parseDouble(postSnapshot.child("long").getValue().toString());
+
+                                double distance1 = Math.pow(Math.pow((currentLat - locationLat), 2) + Math.pow((currentLong - locationLong), 2), 0.5);
+
+                                distances.add(distance1);
+                            } else {
+                                for (double e: distances) {
+                                    double locationLat = Double.parseDouble(postSnapshot.child("lat").getValue().toString());
+                                    double locationLong = Double.parseDouble(postSnapshot.child("long").getValue().toString());
+
+                                    double distance2 = Math.pow(Math.pow((currentLat - locationLat), 2) + Math.pow((currentLong - locationLong), 2), 0.5);
+
+                                    if (distance2 < e) {
+                                        distances.remove(e);
+                                        distances.add(distance2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                String first = distances.get(0).toString();
+                String second = distances.get(1).toString();
+                startIntent.putExtra("firstOption", first);
+                startIntent.putExtra("secondOption", second);
                 startActivity(startIntent);
             }
         });
@@ -108,7 +169,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I am Here");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         googleMap.addMarker(markerOptions);
     }
 
