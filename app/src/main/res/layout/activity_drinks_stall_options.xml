@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DrinksStallOptionsActivity" />
+    android:orientation="vertical">
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="495dp"
+        tools:context=".DrinksStallOptionsActivity" />
+
+    <Button
+        android:id="@+id/showMeBtn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/drink"
+        android:text="Show Me!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#79A5F2"
+        android:textCursorDrawable="@android:color/holo_blue_light"
+        android:textSize="18sp" />
+
+
+</LinearLayout>
