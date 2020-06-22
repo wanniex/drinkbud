@@ -90,9 +90,10 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                     double test2 = postSnapshot.child("long").getValue(Double.class);
                     String name = postSnapshot.child("name").getValue(String.class);
                     String desc = postSnapshot.child("desc").getValue(String.class);
+                    String url = postSnapshot.child("url").getValue(String.class);
 
 
-                    deets.add(new Details(test1, test2, name, desc));
+                    deets.add(new Details(test1, test2, name, desc, url));
                 }
             }
 
@@ -115,13 +116,13 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 for (Details p: deets) {
                     if (distances.size() < 2) {
                         double calculatedDist = (int)(p.calcDist(currentLat, currentLong) * 1000) / 1000;
-                        distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc()));
+                        distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc(), p.getUrl()));
                     } else {
                         for (Details e: distances) {
                             double calculatedDist = (int)(p.calcDist(currentLat, currentLong)*1000) / 1000;
                             if (calculatedDist < e.getDist()) {
                                 distances.remove(e);
-                                distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc()));
+                                distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc(), p.getUrl()));
                             }
                         }
                     }
@@ -130,7 +131,9 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 Details first = distances.get(0);
                 Details second = distances.get(1);
                 startIntent.putExtra("firstOption", first.getName() + "\n" + first.getDesc() + "\n" + first.getDist() + " km away");
+                startIntent.putExtra("firstUrl", first.getUrl());
                 startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
+                startIntent.putExtra("secondUrl", second.getUrl());
                 startActivity(startIntent);
             }
         });
@@ -195,12 +198,14 @@ class Details {
     double longitude;
     String name;
     String desc;
+    String url;
 
-    public Details(double latitude, double longitude, String name, String desc) {
+    public Details(double latitude, double longitude, String name, String desc, String url) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
         this.desc = desc;
+        this.url = url;
     }
 
     String getName() {
@@ -210,6 +215,8 @@ class Details {
     String getDesc() {
         return this.desc;
     }
+
+    String getUrl() {  return this.url; }
 
     double getDist() {
         return this.longitude;
