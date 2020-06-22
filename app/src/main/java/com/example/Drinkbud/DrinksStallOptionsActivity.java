@@ -1,6 +1,7 @@
 package com.example.Drinkbud;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,7 +55,9 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
     // ADDED THIS FOR TEXT ON BUTTONS: 170620
     FirebaseDatabase rootNode;
     DatabaseReference reference;
-    ArrayList<Double> distances = new ArrayList<>();
+    List<Details> distances = new ArrayList<>();
+
+    List<Details> deets = new ArrayList<>();
 
     LocationManager locationManager;
     LocationListener locationListener;
@@ -73,60 +77,60 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         fetchLastLocation();
 
+        // ADDED TO SHOW TEXT ON BUTTONS: 170620
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("drinkStalls");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                distances.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    double test1 = postSnapshot.child("lat").getValue(Double.class);
+                    double test2 = postSnapshot.child("long").getValue(Double.class);
+                    String name = postSnapshot.child("name").getValue(String.class);
+                    String desc = postSnapshot.child("desc").getValue(String.class);
+
+
+                    deets.add(new Details(test1, test2, name, desc));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         Button showMeBtn = (Button) findViewById(R.id.showMeBtn);
         showMeBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), DrinksStallList.class);
-                // ADDED TO SHOW TEXT ON BUTTONS: 170620
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference("drinkStalls");
+
 
                 final double currentLat = currentLocation.getLatitude();
                 final double currentLong = currentLocation.getLongitude();
 
-                // HARDCODED TEST CASES: 170620
-                distances.add(0.0);
-                distances.add(1.0);
-
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                            if (distances.size() < 2) {
-                                double locationLat = Double.parseDouble(postSnapshot.child("lat").getValue().toString());
-                                double locationLong = Double.parseDouble(postSnapshot.child("long").getValue().toString());
-
-                                double distance1 = Math.pow(Math.pow((currentLat - locationLat), 2) + Math.pow((currentLong - locationLong), 2), 0.5);
-
-                                distances.add(distance1);
-                            } else {
-                                for (double e: distances) {
-                                    double locationLat = Double.parseDouble(postSnapshot.child("lat").getValue().toString());
-                                    double locationLong = Double.parseDouble(postSnapshot.child("long").getValue().toString());
-
-                                    double distance2 = Math.pow(Math.pow((currentLat - locationLat), 2) + Math.pow((currentLong - locationLong), 2), 0.5);
-
-                                    if (distance2 < e) {
-                                        distances.remove(e);
-                                        distances.add(distance2);
-                                    }
-                                }
+                for (Details p: deets) {
+                    if (distances.size() < 2) {
+                        double calculatedDist = (int)(p.calcDist(currentLat, currentLong) * 1000) / 1000;
+                        distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc()));
+                    } else {
+                        for (Details e: distances) {
+                            double calculatedDist = (int)(p.calcDist(currentLat, currentLong)*1000) / 1000;
+                            if (calculatedDist < e.getDist()) {
+                                distances.remove(e);
+                                distances.add(new Details(calculatedDist, calculatedDist, p.getName(), p.getDesc()));
                             }
                         }
                     }
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                String first = distances.get(0).toString();
-                String second = distances.get(1).toString();
-                startIntent.putExtra("firstOption", first);
-                startIntent.putExtra("secondOption", second);
+                Details first = distances.get(0);
+                Details second = distances.get(1);
+                startIntent.putExtra("firstOption", first.getName() + "\n" + first.getDesc() + "\n" + first.getDist() + " km away");
+                startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
                 startActivity(startIntent);
             }
         });
@@ -175,7 +179,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode) {
+        switch (requestCode) {
             case REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     fetchLastLocation();
@@ -184,6 +188,49 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
         }
 
     }
+}
+
+class Details {
+    double latitude;
+    double longitude;
+    String name;
+    String desc;
+
+    public Details(double latitude, double longitude, String name, String desc) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.name = name;
+        this.desc = desc;
+    }
+
+    String getName() {
+        return this.name;
+    }
+
+    String getDesc() {
+        return this.desc;
+    }
+
+    double getDist() {
+        return this.longitude;
+    }
+
+    public double calcDist(double currentLat, double currentLong) {
+        double R = 6371; // Radius of the earth in km
+        double locationLat = deg2rad(latitude - currentLat);
+        double locationLong = deg2rad(longitude - currentLong);
+
+        double a = Math.sin(locationLat/2) * Math.sin(locationLat/2) + Math.cos(deg2rad(currentLat)) * Math.cos(deg2rad(latitude)) * Math.sin(locationLong/2) * Math.sin(locationLong/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double d = R * c;
+
+        return d;
+    }
+
+    double deg2rad(double deg) {
+        return deg * (Math.PI/180);
+    }
+}
 
     /*mMap = googleMap;
 
@@ -244,4 +291,4 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
             }
         }).check();
     } */
-}
+
