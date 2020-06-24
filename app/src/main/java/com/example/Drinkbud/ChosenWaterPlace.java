@@ -23,13 +23,17 @@ public class ChosenWaterPlace extends AppCompatActivity {
 
         if (getIntent().hasExtra("url1")) {
             Glide.with(this).load(getIntent().getExtras().getString("url1")).into(imageView);
-        } else if (getIntent().hasExtra("url2")) {
+        }
+
+        if (getIntent().hasExtra("url2")) {
             Glide.with(this).load(getIntent().getExtras().getString("url2")).into(imageView);
         }
 
         if (getIntent().hasExtra("desc1")) {
             textview.setText(getIntent().getExtras().getString("desc1"));
-        } else if (getIntent().hasExtra("desc2")) {
+        }
+
+        if (getIntent().hasExtra("desc2")) {
             textview.setText(getIntent().getExtras().getString("desc2"));
         }
     }
