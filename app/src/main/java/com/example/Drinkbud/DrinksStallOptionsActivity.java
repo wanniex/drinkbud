@@ -79,7 +79,13 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
 
         // ADDED TO SHOW TEXT ON BUTTONS: 170620
         rootNode = FirebaseDatabase.getInstance();
-        reference = rootNode.getReference("drinkStalls");
+        if (getIntent().hasExtra("waterCoolers")) {
+            reference = rootNode.getReference("waterCoolers");
+        } else if (getIntent().hasExtra("vendingMachines")) {
+            reference = rootNode.getReference("vendingMachines");
+        } else {
+            reference = rootNode.getReference("drinkStalls");
+        }
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -90,7 +96,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                     double test2 = postSnapshot.child("long").getValue(Double.class);
                     String name = postSnapshot.child("name").getValue(String.class);
                     String desc = postSnapshot.child("desc").getValue(String.class);
-                    String url = postSnapshot.child("url").getValue(String.class);
+                    String url = postSnapshot.child("pic").getValue(String.class);
 
 
                     deets.add(new Details(test1, test2, name, desc, url));
