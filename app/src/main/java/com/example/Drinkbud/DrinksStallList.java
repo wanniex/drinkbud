@@ -49,9 +49,7 @@ public class DrinksStallList extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), ChosenWaterPlace.class);
                 startIntent.putExtra("desc1", desc1);
-                startIntent.putExtra("desc2", desc2);
                 startIntent.putExtra("url1", url1);
-                startIntent.putExtra("url2", url2);
                 startActivity(startIntent);
             }
         });
@@ -60,9 +58,7 @@ public class DrinksStallList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), ChosenWaterPlace.class);
-                startIntent.putExtra("desc1", desc1);
                 startIntent.putExtra("desc2", desc2);
-                startIntent.putExtra("url1", url1);
                 startIntent.putExtra("url2", url2);
                 startActivity(startIntent);
             }

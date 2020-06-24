@@ -38,12 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-// import com.karumi.dexter.Dexter;
-// import com.karumi.dexter.PermissionToken;
-// import com.karumi.dexter.listener.PermissionDeniedResponse;
-// import com.karumi.dexter.listener.PermissionGrantedResponse;
-// import com.karumi.dexter.listener.PermissionRequest;
-// import com.karumi.dexter.listener.single.PermissionListener;
+
 
 public class DrinksStallOptionsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -90,7 +85,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                     double test2 = postSnapshot.child("long").getValue(Double.class);
                     String name = postSnapshot.child("name").getValue(String.class);
                     String desc = postSnapshot.child("desc").getValue(String.class);
-                    String url = postSnapshot.child("url").getValue(String.class);
+                    String url = postSnapshot.child("pic").getValue(String.class);
 
 
                     deets.add(new Details(test1, test2, name, desc, url));
@@ -131,9 +126,9 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 Details first = distances.get(0);
                 Details second = distances.get(1);
                 startIntent.putExtra("firstOption", first.getName() + "\n" + first.getDesc() + "\n" + first.getDist() + " km away");
-                startIntent.putExtra("firstUrl", first.getUrl());
+                startIntent.putExtra("firstUrl", first.getUrl() + "");
                 startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
-                startIntent.putExtra("secondUrl", second.getUrl());
+                startIntent.putExtra("secondUrl", second.getUrl() + "");
                 startActivity(startIntent);
             }
         });
