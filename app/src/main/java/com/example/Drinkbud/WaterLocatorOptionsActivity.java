@@ -15,8 +15,26 @@ public class WaterLocatorOptionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_water_locator_options);
 
         Button waterCoolerBtn = (Button) findViewById(R.id.waterCoolerBtn);
+        waterCoolerBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), DrinksStallOptionsActivity.class);
+                startIntent.putExtra("waterCoolers", "waterCoolers");
+                startActivity(startIntent);
+            }
+        });
 
         Button vendingMachineBtn = (Button) findViewById(R.id.vendingMachineBtn);
+        vendingMachineBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent startIntent = new Intent(getApplicationContext(), DrinksStallOptionsActivity.class);
+                startIntent.putExtra("vendingMachines", "vendingMachines");
+                startActivity(startIntent);
+            }
+        });
 
         Button drinksStallBtn = (Button) findViewById(R.id.drinksStallBtn);
         drinksStallBtn.setOnClickListener(new View.OnClickListener() {
@@ -24,6 +42,7 @@ public class WaterLocatorOptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), DrinksStallOptionsActivity.class);
+                startIntent.putExtra("drinkStalls", "drinkStalls");
                 startActivity(startIntent);
             }
         });
