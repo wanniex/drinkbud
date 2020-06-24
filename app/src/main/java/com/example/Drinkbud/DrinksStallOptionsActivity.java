@@ -174,10 +174,11 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
     public void onMapReady(GoogleMap googleMap) {
 
         // ADDED THIS 160620
-        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        // currentLocation.getLatitude(), currentLocation.getLongitude()
+        LatLng latLng = new LatLng(1.295025, 103.773766);
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I am Here");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
         googleMap.addMarker(markerOptions);
     }
 
