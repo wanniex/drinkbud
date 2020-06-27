@@ -19,10 +19,17 @@ public class DrinksStallList extends AppCompatActivity {
     String url1;
     String url2;
 
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drinks_stall_list);
+
+        if (getIntent().hasExtra("choice")) {
+            textView = (TextView) findViewById(R.id.textView5);
+            textView.setText(getIntent().getExtras().getString("choice") + " near you:");
+        }
 
         if (getIntent().hasExtra("firstOption")) {
             placesBtn1 = (Button) findViewById(R.id.placesBtn1);

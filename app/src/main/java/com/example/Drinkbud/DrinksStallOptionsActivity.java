@@ -51,6 +51,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     List<Details> distances = new ArrayList<>();
+    String choice;
 
     List<Details> deets = new ArrayList<>();
 
@@ -76,10 +77,13 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
         rootNode = FirebaseDatabase.getInstance();
         if (getIntent().hasExtra("waterCoolers")) {
             reference = rootNode.getReference("waterCoolers");
+            choice = "Water Coolers";
         } else if (getIntent().hasExtra("vendingMachines")) {
             reference = rootNode.getReference("vendingMachines");
+            choice = "Vending Machines";
         } else {
             reference = rootNode.getReference("drinkStalls");
+            choice = "Drink Stalls";
         }
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -135,6 +139,7 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 startIntent.putExtra("firstUrl", first.getUrl() + "");
                 startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
                 startIntent.putExtra("secondUrl", second.getUrl() + "");
+                startIntent.putExtra("choice", choice + "");
                 startActivity(startIntent);
             }
         });
@@ -174,11 +179,10 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
     public void onMapReady(GoogleMap googleMap) {
 
         // ADDED THIS 160620
-        // currentLocation.getLatitude(), currentLocation.getLongitude()
-        LatLng latLng = new LatLng(1.295025, 103.773766);
+        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I am Here");
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         googleMap.addMarker(markerOptions);
     }
 
