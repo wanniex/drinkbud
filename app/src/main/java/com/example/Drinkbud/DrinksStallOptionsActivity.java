@@ -137,8 +137,10 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 Details second = distances.get(1);
                 startIntent.putExtra("firstOption", first.getName() + "\n" + first.getDesc() + "\n" + first.getDist() + " km away");
                 startIntent.putExtra("firstUrl", first.getUrl() + "");
+                startIntent.putExtra("firstKey", first.getDesc() + "");
                 startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
                 startIntent.putExtra("secondUrl", second.getUrl() + "");
+                startIntent.putExtra("secondKey", second.getDesc() + "");
                 startIntent.putExtra("choice", choice + "");
                 startActivity(startIntent);
             }

@@ -19,6 +19,11 @@ public class DrinksStallList extends AppCompatActivity {
     String url1;
     String url2;
 
+    String key1;
+    String key2;
+
+    String choice;
+
     TextView textView;
 
     @Override
@@ -28,7 +33,8 @@ public class DrinksStallList extends AppCompatActivity {
 
         if (getIntent().hasExtra("choice")) {
             textView = (TextView) findViewById(R.id.textView5);
-            textView.setText(getIntent().getExtras().getString("choice") + " near you:");
+            choice = getIntent().getExtras().getString("choice");
+            textView.setText(choice + " near you:");
         }
 
         if (getIntent().hasExtra("firstOption")) {
@@ -51,12 +57,22 @@ public class DrinksStallList extends AppCompatActivity {
             url2 = getIntent().getExtras().getString("secondUrl");
         }
 
+        if (getIntent().hasExtra("firstKey")) {
+            key1 = getIntent().getExtras().getString("firstKey");
+        }
+
+        if (getIntent().hasExtra("secondKey")) {
+            key2 = getIntent().getExtras().getString("secondKey");
+        }
+
         placesBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), ChosenWaterPlace.class);
+                startIntent.putExtra("choice", choice);
                 startIntent.putExtra("desc1", desc1);
                 startIntent.putExtra("url1", url1);
+                startIntent.putExtra("key1", key1);
                 startActivity(startIntent);
             }
         });
@@ -65,8 +81,10 @@ public class DrinksStallList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent startIntent = new Intent(getApplicationContext(), ChosenWaterPlace.class);
+                startIntent.putExtra("choice", choice);
                 startIntent.putExtra("desc2", desc2);
                 startIntent.putExtra("url2", url2);
+                startIntent.putExtra("key2", key2);
                 startActivity(startIntent);
             }
         });
