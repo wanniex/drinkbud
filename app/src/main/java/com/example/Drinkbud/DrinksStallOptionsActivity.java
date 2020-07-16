@@ -137,10 +137,10 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 Details second = distances.get(1);
                 startIntent.putExtra("firstOption", first.getName() + "\n" + first.getDesc() + "\n" + first.getDist() + " km away");
                 startIntent.putExtra("firstUrl", first.getUrl() + "");
-                startIntent.putExtra("firstKey", first.getDesc() + "");
+                startIntent.putExtra("firstKey", first.getName() + "");
                 startIntent.putExtra("secondOption", second.getName() + "\n" + second.getDesc() + "\n" + second.getDist() + " km away");
                 startIntent.putExtra("secondUrl", second.getUrl() + "");
-                startIntent.putExtra("secondKey", second.getDesc() + "");
+                startIntent.putExtra("secondKey", second.getName() + "");
                 startIntent.putExtra("choice", choice + "");
                 startActivity(startIntent);
             }
@@ -183,8 +183,8 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
         // ADDED THIS 160620
         LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("I am Here");
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
         googleMap.addMarker(markerOptions);
     }
 

@@ -18,36 +18,42 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TableLayout
+        android:id="@+id/menuTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="40dp"
-        android:layout_marginHorizontal="10dp">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="40dp">
 
         <TableRow>
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text ="Drink"
-                android:textStyle="bold"
-                android:layout_weight="1"
-                android:gravity="center"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text ="Price"
-                android:textStyle="bold"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="Drink"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text ="Nutritional Value"
-                android:textStyle="bold"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="Price"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Nutritional Value"
+                android:textStyle="bold" />
         </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </TableLayout>
 
