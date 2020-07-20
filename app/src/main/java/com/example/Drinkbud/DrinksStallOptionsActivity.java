@@ -115,8 +115,8 @@ public class DrinksStallOptionsActivity extends FragmentActivity implements OnMa
                 Intent startIntent = new Intent(getApplicationContext(), DrinksStallList.class);
 
 
-                final double currentLat = currentLocation.getLatitude();
-                final double currentLong = currentLocation.getLongitude();
+                final double currentLat = 1.295025;
+                final double currentLong = 103.773766;
 
                 for (Details p: deets) {
                     if (distances.size() < 2) {
