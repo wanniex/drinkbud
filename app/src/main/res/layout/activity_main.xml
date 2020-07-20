@@ -10,43 +10,53 @@
 
     <Button
         android:id="@+id/waterTrackerBtn"
-        android:layout_width="207dp"
-        android:layout_height="38dp"
+        android:layout_width="224dp"
+        android:layout_height="42dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
+        android:fontFamily="@font/roboto"
         android:text="Track my water intake"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.788" />
 
     <Button
         android:id="@+id/waterLocatorBtn"
-        android:layout_width="207dp"
-        android:layout_height="38dp"
+        android:layout_width="222dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
-        android:text="Find the nearest water places"
+        android:fontFamily="@font/roboto"
+        android:text="Find nearest water places"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.662" />
 
     <Button
         android:id="@+id/waterAlarmBtn"
-        android:layout_width="205dp"
-        android:layout_height="36dp"
+        android:layout_width="222dp"
+        android:layout_height="40dp"
         android:background="@drawable/mybutton_background"
+        android:fontFamily="@font/roboto"
         android:text="Set water alarm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
+        app:layout_constraintVertical_bias="0.859" />
 
     <TextView
         android:id="@+id/textView"

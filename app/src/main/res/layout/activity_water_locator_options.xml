@@ -13,46 +13,22 @@
         android:layout_height="38dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
+        android:fontFamily="@font/roboto"
         android:text="Water Cooler"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
-
-    <Button
-        android:id="@+id/vendingMachineBtn"
-        android:layout_width="207dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/mybutton_background"
-        android:text="Vending Machine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.523" />
-
-    <Button
-        android:id="@+id/drinksStallBtn"
-        android:layout_width="207dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/mybutton_background"
-        android:text="Drinks Stall"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627" />
+        app:layout_constraintVertical_bias="0.558" />
 
     <TextView
         android:id="@+id/nearestWaterPlace"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
         android:text="I want to find the nearest:"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,5 +36,51 @@
         app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.389" />
+
+    <Button
+        android:id="@+id/vendingMachineBtn"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/mybutton_background"
+        android:fontFamily="@font/roboto"
+        android:text="Vending Machine"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.661" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="179dp"
+        android:layout_height="178dp"
+        app:layout_constraintBottom_toTopOf="@+id/nearestWaterPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/location_animation" />
+
+    <Button
+        android:id="@+id/drinksStallBtn"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/mybutton_background"
+        android:fontFamily="@font/roboto"
+        android:text="Drinks Stall"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.553"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
