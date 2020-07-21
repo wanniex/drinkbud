@@ -87,12 +87,9 @@ public class WaterTrackerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
                 int num2 = Integer.parseInt(waterAmountNum.getText().toString());
                 int currentDrank = lastDrankRef + num2;
-                reference.child("testUser").child("waterTracker").child(formattedDate).setValue(Integer.toString(currentDrank));
+                reference.child(id).child("waterTracker").child(formattedDate).setValue(Integer.toString(currentDrank));
                 waterAmountResult.setText("You've drank " + currentDrank + " ml today");
             }
         });
