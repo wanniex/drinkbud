@@ -62,12 +62,31 @@ public class DrinksStallMenuActivity extends AppCompatActivity {
                             String name1 = second.child(number).child("name").getValue(String.class);
                             String price1 = second.child(number).child("price").getValue(String.class);
                             String calories1 = second.child(number).child("calories").getValue(String.class);
-                            itemName.add("hi");
-                            itemPrice.add("hi");
-                            itemCalories.add("hi");
+                            itemName.add(name1);
+                            itemPrice.add(price1);
+                            itemCalories.add(calories1);
+
                         }
 
                     }
+                }
+
+                for(int i = 1; i < itemName.size(); i++) {
+                    TableRow row = new TableRow(getBaseContext());
+                    String name = itemName.get(i);
+                    String price = itemPrice.get(i);
+                    String calories = itemCalories.get(i);
+                    TextView drinkName = new TextView(getBaseContext());
+                    drinkName.setText(""+ name);
+                    TextView drinkPrice = new TextView(getBaseContext());
+                    drinkPrice.setText(""+ price);
+                    TextView drinkCalories = new TextView(getBaseContext());
+                    drinkCalories.setText(""+ calories);
+                    row.addView(drinkName);
+                    row.addView(drinkPrice);
+                    row.addView(drinkCalories);
+
+                    menuTable.addView(row);
                 }
             }
 
@@ -76,42 +95,6 @@ public class DrinksStallMenuActivity extends AppCompatActivity {
 
             }
         });
-
-        itemName.add("hi");
-        itemPrice.add("hi");
-        itemCalories.add("hi");
-
-        // add data to table
-        for(int i = 0; i < itemName.size(); i++) {
-            TableRow row = new TableRow(this);
-            String name = itemName.get(i);
-            String price = itemPrice.get(i);
-            String calories = itemCalories.get(i);
-            TextView drinkName = new TextView(this);
-            drinkName.setText(""+ name);
-            TextView drinkPrice = new TextView(this);
-            drinkName.setText(""+ price);
-            TextView drinkCalories = new TextView(this);
-            drinkName.setText(""+ calories);
-            row.addView(drinkName);
-            row.addView(drinkPrice);
-            row.addView(drinkCalories);
-            menuTable.addView(row);
-        }
-
-        header.setText(itemName.size() + "" + "\n");
-
-        /*TableRow row = new TableRow(this);
-        TextView name1 = new TextView(this);
-        name1.setText("hello");
-        TextView name2 = new TextView(this);
-        name2.setText("hello");
-        TextView name3 = new TextView(this);
-        name3.setText("hello");
-        row.addView(name1);
-        row.addView(name2);
-        row.addView(name3);
-        menuTable.addView(row); */
 
     }
 }
