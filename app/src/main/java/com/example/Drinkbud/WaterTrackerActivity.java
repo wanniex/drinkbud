@@ -60,7 +60,7 @@ public class WaterTrackerActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(id)) {
                     if (dataSnapshot.child(id).child("waterTracker").hasChild(formattedDate)) {
-                        int lastDrank = Integer.parseInt(dataSnapshot.child("testUser").child("waterTracker").child(formattedDate).getValue().toString());
+                        int lastDrank = Integer.parseInt(dataSnapshot.child(id).child("waterTracker").child(formattedDate).getValue().toString());
                         waterAmountResult.setText("You've drank " + lastDrank + " ml today");
                         lastDrankRef = lastDrank;
                     } else {
