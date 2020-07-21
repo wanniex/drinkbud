@@ -42,6 +42,9 @@ public class WaterAlarmActivity extends AppCompatActivity {
         }
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioButton minutes30 = findViewById(R.id.alarmfor30);
+        minutes30.setChecked(true);
+
         selection = (TextView) findViewById(R.id.selection);
         // ADDED: initializing sharedPreferencesString
         SharedPreferences sharedPreferencesString = getSharedPreferences("string", MODE_PRIVATE);
@@ -51,7 +54,7 @@ public class WaterAlarmActivity extends AppCompatActivity {
 
         // ADDED: initializing sharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("save", MODE_PRIVATE);
-        activate.setChecked(sharedPreferences.getBoolean("value", true));
+        activate.setChecked(sharedPreferences.getBoolean("value", false));
 
 
         activate.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +80,7 @@ public class WaterAlarmActivity extends AppCompatActivity {
 
                     if (radioID == 2131165214) {
                         // 30 minutes
-                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 5*1000, pendingIntent);
+                        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 30*60*1000, pendingIntent);
 
                     } else if (radioID == 2131165215) {
                         // 45 minutes
