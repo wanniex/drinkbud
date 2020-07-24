@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -87,10 +88,14 @@ public class WaterTrackerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int num2 = Integer.parseInt(waterAmountNum.getText().toString());
-                int currentDrank = lastDrankRef + num2;
-                reference.child(id).child("waterTracker").child(formattedDate).setValue(Integer.toString(currentDrank));
-                waterAmountResult.setText("You've drank " + currentDrank + " ml today");
+                if (waterAmountNum.getText().toString().trim().length() <= 0) {
+                    Toast.makeText(WaterTrackerActivity.this, "Please enter a value!", Toast.LENGTH_SHORT).show();
+                } else {
+                    int num2 = Integer.parseInt(waterAmountNum.getText().toString());
+                    int currentDrank = lastDrankRef + num2;
+                    reference.child(id).child("waterTracker").child(formattedDate).setValue(Integer.toString(currentDrank));
+                    waterAmountResult.setText("You've drank " + currentDrank + " ml today");
+                }
             }
         });
     }
