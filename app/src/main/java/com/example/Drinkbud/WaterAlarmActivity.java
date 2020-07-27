@@ -23,9 +23,6 @@ public class WaterAlarmActivity extends AppCompatActivity {
     RadioButton radioButton;
     TextView selection;
     Switch activate;
-
-
-    // ADDED THIS
     int radioID;
 
     @Override
@@ -93,11 +90,8 @@ public class WaterAlarmActivity extends AppCompatActivity {
                         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 120*60*1000, pendingIntent);
                     }
 
-                    // need to change interval according to selection (in 3rd argument)
-                    // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, SystemClock.elapsedRealtime(), 1*60*1000, pendingIntent);
 
-
-                    // ADDED: to save string
+                    // ADDED: to save string in sharedPreferences
                     selection.setText("Selected frequency: " + radioButton.getText());
                     SharedPreferences.Editor stringEdit = getSharedPreferences("string", MODE_PRIVATE).edit();
                     stringEdit.putString("words", "Selected frequency: " + radioButton.getText());

@@ -11,6 +11,9 @@ import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
+    Button waterTrackerBtn;
+    Button waterAlarm;
+    Button waterLocatorBtn;
 
 
     @Override
@@ -18,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button waterTrackerBtn = (Button) findViewById(R.id.waterTrackerBtn);
+        waterTrackerBtn = (Button) findViewById(R.id.waterTrackerBtn);
         waterTrackerBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button waterAlarm = (Button) findViewById(R.id.waterAlarmBtn);
+        waterAlarm = (Button) findViewById(R.id.waterAlarmBtn);
         waterAlarm.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button waterLocatorBtn = (Button) findViewById(R.id.waterLocatorBtn);
+        waterLocatorBtn = (Button) findViewById(R.id.waterLocatorBtn);
         waterLocatorBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override

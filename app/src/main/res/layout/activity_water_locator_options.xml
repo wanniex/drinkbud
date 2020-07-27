@@ -14,7 +14,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
         android:fontFamily="@font/roboto"
-        android:text="Water Cooler"
+        android:text="@string/water_cooler"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
-        android:text="I want to find the nearest:"
+        android:text="@string/i_want_to_find_the_nearest"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
         android:fontFamily="@font/roboto"
-        android:text="Vending Machine"
+        android:text="@string/vending_machine"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/location_animation" />
+        app:srcCompat="@drawable/location_animation"
+        android:contentDescription="@string/todo" />
 
     <Button
         android:id="@+id/drinksStallBtn"
@@ -73,7 +74,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/mybutton_background"
         android:fontFamily="@font/roboto"
-        android:text="Drinks Stall"
+        android:text="@string/drinks_stall"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

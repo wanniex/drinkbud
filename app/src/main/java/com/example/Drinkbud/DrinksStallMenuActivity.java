@@ -2,20 +2,15 @@ package com.example.Drinkbud;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class DrinksStallMenuActivity extends AppCompatActivity {
@@ -43,10 +38,9 @@ public class DrinksStallMenuActivity extends AppCompatActivity {
             key = getIntent().getExtras().getString("key");
         }
 
-        header = findViewById(R.id.header);
-        //header.setText("" + key);
+        header = (TextView) findViewById(R.id.header);
 
-        menuTable = findViewById(R.id.menuTable);
+        menuTable = (TableLayout) findViewById(R.id.menuTable);
 
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("drinkStalls");
