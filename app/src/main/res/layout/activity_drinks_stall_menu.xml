@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Drink"
+                android:text="@string/drink"
                 android:textStyle="bold" />
 
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Price"
+                android:text="@string/price"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,13 +47,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Nutritional Value"
+                android:text="@string/nutritional_value"
                 android:textStyle="bold" />
         </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
     </TableLayout>
 

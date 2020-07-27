@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:background="@color/drink"
-        android:text="Show Me!"
+        android:text="@string/show_me"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColorHighlight="#FFFFFF"
         android:textColorLink="#79A5F2"

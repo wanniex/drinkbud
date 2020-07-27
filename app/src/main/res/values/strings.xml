@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">drinkbud</string>
     <string name="title_activity_drinks_stall_options">Map</string>
+    <string name="see_the_menu">See the menu!</string>
+    <string name="todo">TODO</string>
+    <string name="drink_stalls_near_you">Drink Stalls near you:</string>
+    <string name="nus">NUS...</string>
+    <string name="nus">NUS...</string>
+    <string name="tap_on_one_you_d_like_to_go">Tap on one you\'d like to go!</string>
+    <string name="drink">Drink</string>
+    <string name="price">Price</string>
+    <string name="nutritional_value">Nutritional Value</string>
+    <string name="show_me">Show Me!</string>
+    <string name="track_my_water_intake">Track my water intake</string>
+    <string name="find_nearest_water_places">Find nearest water places</string>
+    <string name="set_water_alarm">Set water alarm</string>
+    <string name="welcome_to_drinkbud">Welcome to drinkbud!</string>
+    <string name="what_would_you_like_to_do">What would you like to do?</string>
+    <string name="todo">TODO</string>
+    <string name="drink_water">Drink Water!</string>
+    <string name="todo">TODO</string>
+    <string name="water_cooler">Water Cooler</string>
+    <string name="i_want_to_find_the_nearest">I want to find the nearest:</string>
+    <string name="vending_machine">Vending Machine</string>
+    <string name="todo">TODO</string>
+    <string name="drinks_stall">Drinks Stall</string>
 </resources>

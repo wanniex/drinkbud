@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 
 public class WaterLocatorOptionsActivity extends AppCompatActivity {
+    Button waterCoolerBtn;
+    Button vendingMachineBtn;
+    Button drinksStallBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_locator_options);
 
-        Button waterCoolerBtn = (Button) findViewById(R.id.waterCoolerBtn);
+        waterCoolerBtn = (Button) findViewById(R.id.waterCoolerBtn);
         waterCoolerBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -25,7 +28,7 @@ public class WaterLocatorOptionsActivity extends AppCompatActivity {
             }
         });
 
-        Button vendingMachineBtn = (Button) findViewById(R.id.vendingMachineBtn);
+        vendingMachineBtn = (Button) findViewById(R.id.vendingMachineBtn);
         vendingMachineBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -36,7 +39,7 @@ public class WaterLocatorOptionsActivity extends AppCompatActivity {
             }
         });
 
-        Button drinksStallBtn = (Button) findViewById(R.id.drinksStallBtn);
+        drinksStallBtn = (Button) findViewById(R.id.drinksStallBtn);
         drinksStallBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override

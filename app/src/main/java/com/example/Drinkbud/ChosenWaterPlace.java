@@ -24,9 +24,9 @@ public class ChosenWaterPlace extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chosen_water_place);
 
-        imageView = findViewById(R.id.waterPlacePic);
-        textview = findViewById(R.id.desc);
-        drinkStallMenu = findViewById(R.id.drinksStallMenu);
+        imageView = (ImageView) findViewById(R.id.waterPlacePic);
+        textview = (TextView) findViewById(R.id.desc);
+        drinkStallMenu = (Button) findViewById(R.id.drinksStallMenu);
 
         drinkStallMenu.setOnClickListener(new Button.OnClickListener() {
             @Override
